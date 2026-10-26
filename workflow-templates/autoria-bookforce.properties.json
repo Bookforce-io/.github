@@ -1,0 +1,6 @@
+{
+  "name": "Autoría @bookforce.io",
+  "description": "Falla el PR si algún commit no fue hecho con una cuenta @bookforce.io o trae Co-Authored-By.",
+  "iconName": "octicon person",
+  "categories": ["Automation"]
+}

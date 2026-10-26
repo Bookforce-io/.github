@@ -1,0 +1,48 @@
+name: 🐞 Bug
+description: Algo no funciona como debería.
+title: "Corregir: "
+labels: ["tipo: bug"]
+body:
+  - type: textarea
+    id: que-pasa
+    attributes:
+      label: Qué pasa
+      description: Comportamiento actual, con capturas o logs recortados.
+    validations:
+      required: true
+  - type: textarea
+    id: esperado
+    attributes:
+      label: Qué debería pasar
+    validations:
+      required: true
+  - type: textarea
+    id: pasos
+    attributes:
+      label: Cómo reproducirlo
+      placeholder: |
+        1. Ir a …
+        2. …
+    validations:
+      required: true
+  - type: dropdown
+    id: entorno
+    attributes:
+      label: Entorno
+      options: [Producción, Staging / pruebas, Local]
+    validations:
+      required: true
+  - type: dropdown
+    id: prioridad
+    attributes:
+      label: Prioridad
+      options: [alta, media, baja]
+    validations:
+      required: true
+  - type: textarea
+    id: validacion
+    attributes:
+      label: Cómo se valida
+      description: Qué tiene que comprobar quien valide antes de cerrar el issue.
+    validations:
+      required: true

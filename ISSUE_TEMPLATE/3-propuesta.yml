@@ -1,0 +1,31 @@
+name: 📝 Propuesta
+description: Cambio que requiere decisión antes de implementarse (se desarrolla en la wiki).
+title: "Propuesta: "
+labels: ["tipo: propuesta"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        La propuesta se escribe en la wiki como `Propuesta-NNNN-titulo` y se agrega al subíndice
+        **Propuestas**. Este issue es para la discusión y la decisión.
+  - type: input
+    id: wiki
+    attributes:
+      label: Página de la wiki
+      placeholder: https://github.com/Bookforce-io/<repo>/wiki/Propuesta-0001-titulo
+    validations:
+      required: true
+  - type: textarea
+    id: resumen
+    attributes:
+      label: Resumen
+      description: Problema y propuesta en 3–5 líneas.
+    validations:
+      required: true
+  - type: input
+    id: decision
+    attributes:
+      label: Quién decide y para cuándo
+      placeholder: "@persona — AAAA-MM-DD"
+    validations:
+      required: true

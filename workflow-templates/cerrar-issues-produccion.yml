@@ -1,0 +1,58 @@
+# Cierra los issues validados cuando su cambio llega a la rama productiva.
+# Si la rama productiva no es la rama por defecto, cambia `branches`.
+name: Cerrar issues en producción
+
+on:
+  push:
+    branches: [$default-branch]
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  cerrar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const VALIDADO = 'estado: validado'
+            const MARCA = '<!-- bookforce:produccion -->'
+            const rama = context.ref.replace('refs/heads/', '')
+            const refs = new Map()
+            for (const c of context.payload.commits ?? []) {
+              for (const [, n] of c.message.matchAll(/#(\d+)/g)) {
+                if (!refs.has(n)) refs.set(n, c.id.slice(0, 7))
+              }
+            }
+
+            for (const [n, sha] of refs) {
+              const issue_number = Number(n)
+              let issue
+              try {
+                ;({ data: issue } = await github.rest.issues.get({ ...context.repo, issue_number }))
+              } catch {
+                continue
+              }
+              if (issue.pull_request || issue.state === 'closed') continue
+
+              const validado = issue.labels.some((l) => (l.name ?? l) === VALIDADO)
+              if (validado) {
+                await github.rest.issues.createComment({
+                  ...context.repo,
+                  issue_number,
+                  body: `${MARCA}\n✅ Validado y subido a \`${rama}\` en ${sha}. Se cierra.`,
+                })
+                await github.rest.issues.update({ ...context.repo, issue_number, state: 'closed', state_reason: 'completed' })
+                continue
+              }
+
+              const comentarios = await github.paginate(github.rest.issues.listComments, { ...context.repo, issue_number })
+              if (comentarios.some((c) => c.body?.includes(MARCA))) continue
+              await github.rest.issues.createComment({
+                ...context.repo,
+                issue_number,
+                body: `${MARCA}\n🚀 El cambio llegó a \`${rama}\` en ${sha}. Queda abierto hasta que alguien lo valide con \`${VALIDADO}\`.`,
+              })
+            }

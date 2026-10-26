@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Pautas de trabajo
+    url: https://github.com/Bookforce-io/bookforce-workspace/tree/main/pautas
+    about: Cómo crear, comentar y cerrar issues en Bookforce.io.

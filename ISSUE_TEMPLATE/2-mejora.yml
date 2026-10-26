@@ -1,0 +1,33 @@
+name: ✨ Mejora
+description: Mejora de algo existente o funcionalidad acotada.
+labels: ["tipo: mejora"]
+body:
+  - type: textarea
+    id: necesidad
+    attributes:
+      label: Necesidad
+      description: Qué problema resuelve y para quién.
+    validations:
+      required: true
+  - type: textarea
+    id: alcance
+    attributes:
+      label: Alcance
+      description: Qué incluye y qué queda fuera.
+    validations:
+      required: true
+  - type: dropdown
+    id: prioridad
+    attributes:
+      label: Prioridad
+      options: [alta, media, baja]
+    validations:
+      required: true
+  - type: textarea
+    id: validacion
+    attributes:
+      label: Criterios de aceptación
+      description: "Lo que debe comprobarse para marcarlo `estado: validado`."
+      placeholder: "- [ ] …"
+    validations:
+      required: true

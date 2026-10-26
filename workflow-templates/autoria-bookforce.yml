@@ -1,0 +1,35 @@
+# Rechaza los PR con commits que no fueron hechos con una cuenta @bookforce.io
+# o que traen trailers Co-Authored-By.
+name: Autoría @bookforce.io
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  autoria:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const DOMINIO = '@bookforce.io'
+            const commits = await github.paginate(github.rest.pulls.listCommits, {
+              ...context.repo,
+              pull_number: context.payload.pull_request.number,
+            })
+            const ajenos = commits.filter((c) => !c.commit.author.email.toLowerCase().endsWith(DOMINIO))
+            const coautores = commits.filter((c) => /^co-authored-by:/im.test(c.commit.message))
+            if (ajenos.length === 0 && coautores.length === 0) {
+              core.info(`Los ${commits.length} commits usan ${DOMINIO} y no traen Co-Authored-By.`)
+              return
+            }
+            for (const c of ajenos) core.error(`${c.sha.slice(0, 7)} <${c.commit.author.email}> ${c.commit.message.split('\n')[0]}`)
+            for (const c of coautores) core.error(`${c.sha.slice(0, 7)} trae Co-Authored-By: ${c.commit.message.split('\n')[0]}`)
+            core.setFailed(
+              `${ajenos.length} commit(s) sin correo ${DOMINIO} y ${coautores.length} con Co-Authored-By. Reescríbelos con tu cuenta ${DOMINIO} y sin ese trailer.`
+            )

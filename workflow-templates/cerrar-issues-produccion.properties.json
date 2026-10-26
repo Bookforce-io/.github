@@ -1,0 +1,6 @@
+{
+  "name": "Cerrar issues en producción",
+  "description": "Cierra los issues con 'estado: validado' cuando su cambio llega a la rama productiva; avisa en los que aún no se validan.",
+  "iconName": "octicon issue-closed",
+  "categories": ["Automation"]
+}
