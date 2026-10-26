@@ -16,6 +16,9 @@ commit: `git commit --amend --reset-author --no-edit`.
 
 ## 2. Flujo
 
+Usa `gh` para todo lo que toque GitHub (issues, PR, merges); `git` solo para commitear, push y
+worktrees. Trabaja cada issue en su propio worktree y elimínalo apenas publiques los cambios.
+
 1. **Issue** con la plantilla que corresponda, etiquetas `tipo:` y `prioridad:` y responsable.
 2. Comenta en el issue al empezar (`estado: en curso`) indicando la rama.
 3. **Rama** `tipo/<n>-descripcion` (`fix/42-cupos-duplicados`).
