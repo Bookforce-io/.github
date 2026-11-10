@@ -23,7 +23,7 @@ plataformas y las pautas con que trabajamos.
 | --- | --- |
 | **Commits** | Siempre con la cuenta `@bookforce.io`, en formato convencional y con el issue: `fix(reservas): … (#42)`. |
 | **Issues** | Todo trabajo nace de un issue, se comenta en cada hito y se cierra solo **validado y en la rama productiva**. |
-| **Wikis** | Cada repositorio documenta sus **Propuestas** (con subíndice) y su **Changelog**. |
+| **Propuestas y changelog** | Cada repositorio guarda sus **propuestas** en `docs/propuestas/` y su **changelog** en `CHANGELOG.md`, y los cambia por PR. |
 | **Pull requests** | Nunca push directo a producción: issue → rama → PR → validación → merge. |
 
 ¿Vas a contribuir? Lee la [guía de contribución](https://github.com/Bookforce-io/.github/blob/main/CONTRIBUTING.md).

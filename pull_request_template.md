@@ -17,4 +17,4 @@ Refs #<!-- número. Usa "Refs", no "Closes": el issue se cierra al validarse y l
 - [ ] Comenté en el issue el enlace a este PR y puse `estado: en revisión`.
 - [ ] Sin secretos ni archivos `.env`.
 - [ ] Sin `Co-Authored-By` ni atribuciones automáticas en commits ni en este PR.
-- [ ] Si cambia algo visible en producción, preparé la entrada del **Changelog** en la wiki.
+- [ ] Si cambia algo visible en producción, agregué la línea en `CHANGELOG.md` bajo `[Sin publicar]`.
