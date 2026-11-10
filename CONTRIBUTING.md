@@ -51,7 +51,7 @@ Trabaja cada issue en su propio worktree y elimínalo apenas publiques los cambi
 6. **Validación** por alguien distinto de quien implementó → `estado: validado`.
 7. **Merge a la rama productiva** con `gh pr merge` → el issue se cierra con el comentario de dónde
    quedó.
-8. **Changelog** actualizado en la wiki del repositorio.
+8. **Changelog**: la línea va en `CHANGELOG.md` en el mismo PR, bajo `[Sin publicar]`.
 9. **Elimina el worktree** en cuanto los cambios estén publicados.
 
 ## 4. Nunca

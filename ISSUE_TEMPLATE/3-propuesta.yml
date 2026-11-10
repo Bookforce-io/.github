@@ -1,18 +1,19 @@
 name: 📝 Propuesta
-description: Cambio que requiere decisión antes de implementarse (se desarrolla en la wiki).
+description: Cambio que requiere decisión antes de implementarse (se escribe en docs/propuestas/).
 title: "Propuesta: "
 labels: ["tipo: propuesta"]
 body:
   - type: markdown
     attributes:
       value: |
-        La propuesta se escribe en la wiki como `Propuesta-NNNN-titulo` y se agrega al subíndice
-        **Propuestas**. Este issue es para la discusión y la decisión.
+        La propuesta se escribe en el repositorio como `docs/propuestas/NNNN-titulo.md` (o en
+        `propuestas/` del paraguas del proyecto si abarca varios repos), se agrega al índice
+        `README.md` de esa carpeta y entra por PR. Este issue es para la discusión y la decisión.
   - type: input
-    id: wiki
+    id: propuesta
     attributes:
-      label: Página de la wiki
-      placeholder: https://github.com/Bookforce-io/<repo>/wiki/Propuesta-0001-titulo
+      label: Archivo de la propuesta
+      placeholder: https://github.com/Bookforce-io/<repo>/blob/<rama>/docs/propuestas/0001-titulo.md
     validations:
       required: true
   - type: textarea
